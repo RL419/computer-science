@@ -15,5 +15,8 @@ Output: 31
 Explanation: The input binary string 11111111111111111111111111111101 has a total of thirty one '1' bits.
 '''
 '''Thoughts
-No Idea
+1. Call bin on n and count the number of 1s
 '''
+
+def num_of1_bit(n):
+    return bin(n)[2:].count('1')
