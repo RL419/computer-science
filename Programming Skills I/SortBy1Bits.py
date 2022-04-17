@@ -17,7 +17,9 @@ Output: [1,2,4,8,16,32,64,128,256,512,1024]
 Explantion: All integers have 1 bit in the binary representation, you should just sort them in ascending order.
 '''
 '''Thoughts
-1. No idea
+1. Get a dictionary of the count of ones in binary to a list of the original numbers
+2. Sort the dictionary keys and the the sorted values to the output
+3. return output
 '''
 
 # def sortbybit(arr):
@@ -30,3 +32,35 @@ Explantion: All integers have 1 bit in the binary representation, you should jus
 
 # def ones(s: str):
 #     return s.count('1')
+
+# def sortbybit(arr:list):
+#     ones = [bin(num)[2:].count('1') for num in arr]
+#     out = []
+#     while len(ones) > 0:
+#         small = min(ones)
+#         if ones.count(small) > 1:
+#             l = []
+#             for i, v in enumerate(ones):
+#                 if v == small:
+#                     l.append(arr.pop(i))
+#                     ones.pop(i)
+#             l.sort()
+#             out.extend(l)
+#         else:
+#             out.append(arr.pop(ones.index(small)))
+#             ones.remove(small)
+#     return out
+
+def sortbybit(arr):
+    d = {}
+    for num in arr:
+        binary = bin(num)[2:]
+        if binary.count('1') in d.keys():
+            d[binary.count('1')].append(num)
+        else:
+            d[binary.count('1')] = [num]
+    key = sorted(d.keys())
+    out = []
+    for c in key:
+        out.extend(sorted(d[c]))
+    return out
