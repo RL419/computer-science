@@ -28,8 +28,15 @@ The steps below will take one or two days to get used to, but after that you wil
 10. Git commit -- upload the folder to github.
 11. [Optional after the first few days] On the first few days, wechat me after you finish.
 
-## Weekly Reading
+## Month 1 Reading
 1. Pages 1-22: Begin the Python primer up to loops.
 2. Pages 22-38: Up to try and except statements.
 3. Pages 39-50: End of chapter 1.
 4. Complete (any) 2 problems from Reinforcement, 2 problems from Creativity, and 3 problems from Projects.
+
+## Month 2 Reading
+Chapter 2: Object Oriented Programming.  
+1. Pages 57-102
+2. P-2.39
+3. P-2.33
+4. P-2.34
