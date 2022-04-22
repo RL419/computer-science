@@ -22,3 +22,49 @@ def shuffle(data):
 '''Demonstrate how to use Python’s list comprehension syntax to produce thelist[ a , b , c ,..., z ],butwithouthavingtotypeall26such characters literally.'''
 
 b = [chr(i) for i in range(97, 123)]
+
+# Projects
+'''Write a Python program that outputs all possible strings formed by using thecharacters c , a , t , d , o ,and g exactly once.'''
+
+def generate(string: list):
+    if len(string) == 1:
+        return string
+    out = []
+    for character in string:
+        no = string.copy()
+        no.remove(character)
+        previous = generate(no)
+        for s in previous:
+            out.append(character + s)
+    return out
+
+# print(generate(['c','a','t','d','o','g']))
+# test = generate(['c','a','t','d','o','g'])
+# print(len(test) == len(set(test)))
+
+'''Write a Python program that can take a positive integer greater than 2 as input and write out the number of times one must repeatedly divide this number by 2 before getting a value less than 2.'''
+import math
+
+def divideby2(num):
+    return int(math.log(num, 2))
+
+'''Write a Python program that can “make change.” Your program should take two numbers as input, one that is a monetary amount charged and the other that is a monetary amount given. It should then return the number of each kind of bill and coin to give back as change for the difference between the amount given and the amount charged. The values assigned to the bills and coins can be based on the monetary system of any current or former government. Try to design your program so that it returns as few bills and coins as possible.'''
+
+def make_change(charged, given):
+    d = {100:0, 50:0, 20:0, 10:0, 5:0, 2:0, 1:0, 0.25:0, 0.1:0, 0.05:0}
+    needed = given - charged
+    for k in d.keys():
+        stuff = divmod(needed, k)
+        d[k] += int(stuff[0])
+        needed = stuff[1]
+
+    out = ""
+    for key, value in d.items():
+        if value > 0:
+            if key > 2:
+                out += f'{value} {key} dollar bills, '
+            else:
+                out += f'{value} {key} dollar coins, '
+    return out[:-2]
+
+print(make_change(463.5, 1067.65))
