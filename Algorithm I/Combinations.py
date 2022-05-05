@@ -22,29 +22,20 @@ Output: [[1]]
 
 '''
 
-# def combine(n,k):
-#     if  k <= 0:
-#         return [[]]
-#     if k > n:
-#         return []
-#     if n == 1:
-#         return [[1]]
+def helper(ans:list, n, k, current, i) -> None:
+	if len(current) == k or i > n:
+		if len(current) == k:
+			ans.append(current)
+		return
+		
+	helper(ans, n, k, current+[i], i+1)
+	helper(ans, n, k, current, i+1)
 
-#     nums = [i for i in range(1,n+1)]
+def function(n,k):
+	ans = []
 
+	helper(ans, n, k, [], 1)
+	
+	return ans
 
-# def get(l:list,k):
-#     if k == 0:
-#         return []
-#     out = set()
-#     for i in l:
-#         new = l.copy()
-#         new.remove(i)
-#         previous = get(new,k-1)
-#         for j in previous:
-#             alist = [i]
-#             alist.extend(j)
-#             out.add(sorted(alist))
-#     return out
-
-# print(get([1,2,3,4], 2))
+# print(function(4,2))
