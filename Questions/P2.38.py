@@ -38,5 +38,34 @@ class Quadrilateral(Polygon):
         return self.base + self.side1 + self.side2 + self.top
 
 class Pentagon(Polygon):
-    def __init__(self) -> None:
+    def __init__(self, length) -> None:
         super().__init__(5)
+        self.length = length
+    
+    def area(self):
+        return ((25+500**0.5)**0.5)/4*self.length**2
+    
+    def perimeter(self):
+        return 5*self.length
+
+class Hexagon(Polygon):
+    def __init__(self, length) -> None:
+        super().__init__(6)
+        self.length = length
+    
+    def area(self):
+        return 27**0.5 / 2 * self.length**2
+    
+    def perimeter(self):
+        return 6*self.length
+
+class Octagon(Polygon):
+    def __init__(self, length) -> None:
+        super().__init__(8)
+        self.length = length
+
+    def area(self):
+        return (2 + 8**0.5)*self.length**2
+    
+    def perimeter(self):
+        return 8*self.length
