@@ -69,3 +69,45 @@ class Octagon(Polygon):
     
     def perimeter(self):
         return 8*self.length
+
+class IsocelesTriangle(Triangle):
+    def __init__(self, side, base, height) -> None:
+        super().__init__(side1=side, side2=side, base=base, height=height)
+    
+    def area(self):
+        return super().area()
+    
+    def perimeter(self):
+        return super().perimeter()
+
+class EqualateralTriangle(IsocelesTriangle):
+    def __init__(self, length) -> None:
+        height = ((length**2) - (length/2)**2)**0.5
+        super().__init__(side=length, base=length, height=height)
+    
+    def area(self):
+        return super().area()
+    
+    def perimeter(self):
+        return super().perimeter()
+
+class Rectangle(Quadrilateral):
+    def __init__(self, base, height) -> None:
+        super().__init__(base, height, side1=height, side2=height, top=base)
+    
+    def area(self):
+        return super().area()
+
+    def perimeter(self):
+        return super().perimeter()
+
+class Square(Rectangle):
+    def __init__(self, length) -> None:
+        super().__init__(base=length, height=length)
+
+    def perimeter(self):
+        return super().perimeter()
+
+    def area(self):
+        return super().area()
+
