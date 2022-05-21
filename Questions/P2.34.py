@@ -9,3 +9,6 @@ def barchart(file_name):
         l = f.read()
 
     d = collections.Counter(l)
+    print(d)
+
+barchart('/Users/raymond/Desktop/Life And Death/253-288.sgf')
