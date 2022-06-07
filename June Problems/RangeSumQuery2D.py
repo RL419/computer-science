@@ -21,12 +21,33 @@ numMatrix.sumRegion(1, 1, 2, 2); // return 11 (i.e sum of the green rectangle)
 numMatrix.sumRegion(1, 2, 2, 4); // return 12 (i.e sum of the blue rectangle)
 '''
 '''Thoughts
-Time Limite Exceeded
+1. For init loop through matrix
+2. For every list in matrix loop through it
+3. For every element add the total of everything in this list until this elemtn to a list
+4. For sumRegion get sums from row1 to row2
+5. loop through the current list minus sums[col1] from sums[col2+1] and add it to the total
+6. Return total
 '''
 
 class NumMatrix:
     def __init__(self, matrix: list[list[int]]) -> None:
-        self.matrix = matrix
+        r, c = len(matrix), len(matrix[0])
+        sums = [[0 for _ in range(c+1)] for _ in range(r)]
+        for i in range(r):
+            for j in range(c):
+                sums[i][j+1] = sums[i][j] + matrix[i][j]
+        self.sums = sums
+    
+
+    def sumRegion(self, row1, col1, row2, col2):
+        out = 0
+        current = self.sums[row1:row2+1]
+        for l in current:
+            out += l[col2+1] - l[col1]
+        return out
+
+    # def __init__(self, matrix: list[list[int]]) -> None:
+    #     self.matrix = matrix
 
     # def sumRegion(self, row1, col1, row2, col2):
     #     out = 0
@@ -35,15 +56,16 @@ class NumMatrix:
     #         current[i] = current[i][col1:col2+1]
     #         out += sum(current[i])
     #     return out
-    def sumRegion(self, row1, col1, row2, col2):
-        out = 0
-        current = self.matrix[row1:row2+1]
-        
-        r, c = len(current), len(current[0])
-        sums = [[0 for _ in range(c+1)] for _ in range(r)]
 
-        for i in range(r):
-            for j in range(col2+1):
-                sums[i][j+1] = sums[i][j] + current[i][j]
-            out += sums[i][col2+1] - sums[i][col1]
-        return out
+    # def sumRegion(self, row1, col1, row2, col2):
+    #     out = 0
+    #     current = self.matrix[row1:row2+1]
+        
+    #     r, c = len(current), len(current[0])
+    #     sums = [[0 for _ in range(c+1)] for _ in range(r)]
+
+    #     for i in range(r):
+    #         for j in range(col2+1):
+    #             sums[i][j+1] = sums[i][j] + current[i][j]
+    #         out += sums[i][col2+1] - sums[i][col1]
+    #     return out
