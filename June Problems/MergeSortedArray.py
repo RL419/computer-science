@@ -27,3 +27,7 @@ Note that because m = 0, there are no elements in nums1. The 0 is only there to 
 1. Make everything in nums1 after m num2
 2. sort nums1
 '''
+
+def merge(nums1, m, nums2, n):
+    nums1[m:] = nums2
+    nums1.sort()
