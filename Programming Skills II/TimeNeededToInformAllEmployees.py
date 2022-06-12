@@ -22,3 +22,25 @@ The tree structure of the employees in the company is shown.
 '''Thoughts
 
 '''
+
+from collections import defaultdict, deque
+
+
+def numOfMinutes(n, headID, manager, informTime):
+    edges = defaultdict(list)
+    for employee, mngr in enumerate(manager):
+        edges[mngr].append(employee)
+    
+    max_time = bfs(edges, informTime, headID)
+    return max_time
+
+def bfs(edges, times, head):
+    longest = 0
+    q = deque([(head, 0)])
+    while q:
+        node, time = q.pop()
+        longest = max(longest, time)
+        for edge in edges[node]:
+            q.appendleft((edge, time + times[node]))
+    
+    return longest
