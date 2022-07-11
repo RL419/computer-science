@@ -14,18 +14,19 @@ Output: 2
 
 '''
 
-def subarray_sum(nums, k):
+def subarray_sum(nums:list, k):
+    count = 0
     d = {0:1}
 
-    count = 0
+    s = 0
+    for n in nums:
+        s += n
 
-    sums = [nums[0]]
-
-    for num in nums[1:]:
-        sums.append(num + sums[-1])
-    
-    for num in sums:
-        if num - k in sums or num == k:
-            count += 1
-    
+        if s - k in d.keys():
+            count += d[s-k]
+        
+        if s in d.keys():
+            d[s] += 1
+        else:
+            d[s] = 1
     return count
